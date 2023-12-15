@@ -8,6 +8,7 @@ import {
   HttpParams,
   HttpClientModule,
 } from '@angular/common/http';
+import { weatherData } from './models/weather.model';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,18 @@ import {
 export class AppComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
+  weatherData?: weatherData;
+
   ngOnInit(): void {
     this.weatherService.getWeatherData('coimbatore').subscribe({
       next: (response) => {
+        this.weatherData = response;
         console.log(response);
       },
     });
+  }
+
+  FahrenheitToCelsius(fahrenheit: number): number {
+    return ((fahrenheit - 32) * 5) / 9;
   }
 }

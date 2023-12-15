@@ -18,17 +18,14 @@ export class WeatherService {
 
   getWeatherData(cityName: string): Observable<weatherData> {
     return this.http.get<weatherData>(
-      'https://openweather43.p.rapidapi.com/weather',
+      `https://open-weather13.p.rapidapi.com/city/${cityName}`,
       {
         headers: new HttpHeaders()
-          .set('X-RapidAPI-Host', 'openweather43.p.rapidapi.com')
+          .set('X-RapidAPI-Host', 'open-weather13.p.rapidapi.com')
           .set(
             'X-RapidAPI-Key',
             '8f1f0e3758msh25f9a3b661c4349p11b19fjsnd436e66b3ee2'
           ),
-        params: new HttpParams()
-          .set('q', 'coimbatore')
-
       }
     );
   }
